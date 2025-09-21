@@ -1,2 +1,438 @@
-<!DOCTYPE html>
-<img src="goodbye.png" alt="goodbye" >
+REV 303<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wafkee</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background-color: #111;
+            background-repeat: repeat;
+            background-size: auto;
+            animation: moveBackground 30s linear infinite;
+            transition: background-image 1s ease-in-out;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -1000px 0;
+            }
+        }
+
+        header {
+            height: auto;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            background: none; /* Remove header background */
+        }
+
+        .nav-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Optional: keep the shadow for depth */
+        }
+
+        .nav-container a {
+            color: white;
+            display: block;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container a:hover {
+            background-color: #555;
+            color: #FFD700;
+            text-decoration: underline;
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            color: white;
+            font-size: 14px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .theme-selector {
+            display: none;
+            margin: 20px auto;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        .theme-selector input {
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .theme-selector button {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .theme-selector button:hover {
+            background-color: #555;
+        }
+
+        .theme-button {
+            margin: 20px auto;
+            display: block;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #444;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .theme-button:hover {
+            background-color: #666;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .custom-upload {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .custom-upload:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+<header id="dynamic-background">
+    <img src="/untitled.png" alt="The.">
+     <img src="/disc3new.png" alt="The.">
+     <img src="/disc2.png" alt="The.">
+
+
+        
+       <p> added crossy road and fixed some crash issues with it</p></p>
+        <p> REST IN PEACE music website</p></p>
+      <p>ill try to fix the music website but thats unlikely since all the mp3 thingys i use are dying :[</p></p>
+         
+    
+        
+
+    
+   
+
+    <button class="theme-button" id="theme-button" onclick="toggleThemeSelector()">change theme</button>
+
+    <div class="theme-selector" id="theme-selector">
+        <h3>select or upload backgrounds</h3>
+
+        <label>
+            <input type="checkbox" id="toggle-background-change" onchange="toggleCustomSlots()"> enable custom backgrounds (these will change every 60 seconds, however if you only put one it will not change.)
+        </label>
+
+        <div id="default-options">
+            <button onclick="setTheme('bg1new.png')">night</button>
+            <button onclick="setTheme('bg2new.png')">cloudy</button>
+            <button onclick="setTheme('bg3new.png')">rain</button>
+            <button onclick="setTheme('bg2.png')">petscop colors</button>
+            <button onclick="setTheme('bg1.png')">doodles</button>
+        </div>
+
+        <div id="custom-slots" class="hidden">
+            <label class="custom-upload">slot 1
+                <input class="file-input" type="file" onchange="uploadImage(event, 0)">
+            </label>
+            <label class="custom-upload">slot 2
+                <input class="file-input" type="file" onchange="uploadImage(event, 1)">
+            </label>
+            <label class="custom-upload">slot 3
+                <input class="file-input" type="file" onchange="uploadImage(event, 2)">
+            </label>
+            <label class="custom-upload">slot 4
+                <input class="file-input" type="file" onchange="uploadImage(event, 3)">
+            </label>
+            <label class="custom-upload">slot 5
+                <input class="file-input" type="file" onchange="uploadImage(event, 4)">
+            </label>
+        </div>
+    </div>
+
+  <!--  <p>click <a href="/new.html">here</a> for the music website The thing is about to be discontinued.</p> -->
+</header>
+
+<div class="nav-container">
+    <a href="/SubwaySF/">
+        <img class="game-thumbnail" src="icon/SF.jpeg" alt="Subway Surfers SF">
+        Subway Surfers: San Francisco
+    </a>
+    <a href="/1v1/index.html">
+        <img class="game-thumbnail" src="icon/1v1logonew.png" alt="1v1.lol">
+        1v1.lol
+    </a>
+    <a href="/SubwaySP/">
+        <img class="game-thumbnail" src="icon/FourthAvatar.webp" alt="Subway Surfers SP">
+        Subway Surfers: Saint Petersburg
+    </a>
+    <a href="/FruitNinjaClassic/">
+        <img class="game-thumbnail" src="icon/fruitninjaold.jpg" alt="Fruit Ninja Classic">
+        Fruit Ninja Classic (2D)
+    </a>
+    <a href="/FruitNinja/">
+        <img class="game-thumbnail" src="icon/fruitninjanew.jpeg" alt="Fruit Ninja">
+        Fruit Ninja HD
+    </a>
+    <a href="/CutTheRope/">
+        <img class="game-thumbnail" src="icon/cuttherope.avif" alt="Cut The Rope">
+        Cut The Rope
+    </a>
+    <a href="/JetpackJoyride/">
+        <img class="game-thumbnail" src="icon/jetpackjoyride.png" alt="Jetpack Joyride">
+        Jetpack Joyride
+    </a>
+      <a href="/html55/embeds/bitlife">
+        <img class="game-thumbnail" src="/icon/bitlifeicon.png" alt="1">
+       BitLife
+    </a>
+          <a href="/html55/embeds/paper.io2">
+        <img class="game-thumbnail" src="/icon/papericon.png" alt="1">
+       paper.io 2
+    </a>
+      <a href="/html55/embeds/moto_x3m">
+        <img class="game-thumbnail" src="/place.png" alt="1">
+       Moto X3M
+    </a>
+    <a href="https://mafkee.serv00.net/">
+        <img class="game-thumbnail" src="/place.png" alt="1">
+       Buckshot Roullette (REFRESH IF GAME GIVES ERROR)
+    </a>
+          <a href="/html55/embeds/cluster_rush">
+        <img class="game-thumbnail" src="/icon/clustericon.png" alt="Jetpack Joyride">
+      Cluster Rush
+    </a>
+    <a href="/soniccd/">
+        <img class="game-thumbnail" src="/icon/CD2011Art.webp" alt="CD">
+      Sonic CD
+    </a>
+    <a href="/sonicroboblast2/">
+        <img class="game-thumbnail" src="/icon/SRB2icon.png" alt="CD">
+      Sonic Robo Blast 2 (SRB2)
+    </a>
+    <a href="/retrobowl.html">
+        <img class="game-thumbnail" src="/icon/retrobowl.jpg" alt="Retro Bowl">
+        Retro Bowl
+    </a>
+    <a href="/smrpg/">
+        <img class="game-thumbnail" src="icon/rpgicon.png" alt="Mario Rpg">
+        Super Mario RPG
+    </a>
+    <a href="/test/">
+        <img class="game-thumbnail" src="icon/papermarioicon.png" alt="Mario Rpg">
+        Paper Mario (64)
+    </a>
+      <a href="/flash/mf.html">
+        <img class="game-thumbnail" src="/Mfmario.webp" alt="Mario">
+        Mario Forever
+    </a>
+    <a href="/cookie.html">
+        <img class="game-thumbnail" src="icon/unnamed.png" alt="guh">
+        Cookie Clicker
+    </a>
+       <a href="/crossy1">
+        <img class="game-thumbnail" src="space.png" alt="guh2">
+        Crossy Road Space
+    </a>
+     <a href="/common/source/class-402/index.html"> 
+        <img class="game-thumbnail" src="icon/6-year-update-icon.webp" alt="guh2">
+        Crossy Road (normal)
+    </a>
+    <a href="/totm-main/">
+        <img class="game-thumbnail" src="/icon/totm.png" alt="Tomb of the Mask">
+        Tomb Of The Mask
+    </a>
+    <a href="/Eag1.8.html">
+        <img class="game-thumbnail" src="icon//mineicon.jpg" alt="Minecraft/Eaglercraft">
+        Minecraft/Eaglercraft
+    </a>
+    <a href="/meltdown2/">
+        <img class="game-thumbnail" src="/icon/properslopelogo.png" alt="Slope">
+        Slope
+    </a>
+<!--    <a href="/pt/PizzaTower_GM2.html">
+        <img class="game-thumbnail" src="/icon/pizzatower.png" alt="Pizza Tower">
+        Pizza Tower (April 2021)
+    </a> -->
+        <a href="/html55/embeds/fnf/">
+        <img class="game-thumbnail" src="/icon/fnficon.png" alt="fnf">
+        Friday Night Funkin'
+    </a>
+    <a href="/gba/">
+        <img class="game-thumbnail" src="icon/gba.png" alt="GBA">
+        GBA
+    </a>
+    <a href="/flashlauncher.html">
+        <img class="game-thumbnail" src="flash/flash.png" alt="flash">
+        Flash Games
+    </a>
+    <a href="/geometrylauncher.html">
+        <img class="game-thumbnail" src="icon/geometrydash.jpeg" alt="Geometry Dash Meltdown">
+        Geometry Dash (ALL THE SPINOFFS)
+    </a>
+    <a href="/dokutsu/">
+        <img class="game-thumbnail" src="icon/cave.png" alt="Cave Story">
+        Cave Story (Doukutsu Monogatari)
+    </a>
+    <a href="/AngryBirdsChrome-main/">
+        <img class="game-thumbnail" src="icon/abicon.webp" alt="Angry Birds Chrome">
+        Angry Birds Chrome
+    </a>
+ <a href="/hd_fnaf/1">
+        <img class="game-thumbnail" src="icon/fnaf1icon.jpeg" alt="FnaF 1">
+        FnaF 1
+    </a>
+    <a href="hd_fnaf/2">
+        <img class="game-thumbnail" src="icon/fnaf2icon.jpeg" alt="FnaF 2">
+        FnaF 2
+    </a>
+    <a href="hd_fnaf/3">
+        <img class="game-thumbnail" src="icon/fnaf3icon.jpg" alt="FnaF 3">
+        FnaF 3
+    </a>
+    <a href="/hd_fnaf/4">
+        <img class="game-thumbnail" src="icon/fnaf4icon.webp" alt="FnaF 4">
+        FnaF 4
+    </a>
+    <a href="hd_fnaf/w">
+        <img class="game-thumbnail" src="icon/fnafworldicon.png" alt="FnaF World">
+        FnaF World
+    </a>
+    <a href="/hd_fnaf/ucn/">
+        <img class="game-thumbnail" src="icon/fnafuncicon.webp" alt="FnaF Ultimate Custom Night">
+        FnaF Ultimate Custom Night
+    </a> 
+    <a href="/tinyfish/">
+        <img class="game-thumbnail" src="/icon/thumb.png" alt="Tiny Fishing">
+        Tiny Fishing
+    </a>
+  
+    <a href="/meltdown2/blockblast/">
+        <img class="game-thumbnail" src="icon/blockblast.jpeg" alt="Block Blast">
+        Block Blast
+    </a>
+    <a href="/Marble.html">
+        <img class="game-thumbnail" src="icon/marble.png" alt="Marble Blast Ultra">
+        Marble Blast Ultra
+    </a>
+    <a href="/Snow-Rider3D-main/">
+        <img class="game-thumbnail" src="icon/snowrider.png" alt="Snow Rider 3D">
+        Snow Rider 3D
+    </a>
+</div>
+
+<footer>
+    <p>i be like,, :3 everyday, Remind me to make this text random</p>
+</footer>
+
+<script>
+    const header = document.getElementById('dynamic-background');
+    const themeSelector = document.getElementById('theme-selector');
+    const themeButton = document.getElementById('theme-button');
+    const defaultOptions = document.getElementById('default-options');
+    const customSlots = document.getElementById('custom-slots');
+    const toggleBackgroundChangeCheckbox = document.getElementById('toggle-background-change');
+
+    let customImages = JSON.parse(localStorage.getItem('customImages')) || ['bg1new.png', 'bg2new.png', 'bg3new.png', 'bg2.png', 'bg1.png'];
+
+    function setTheme(image) {
+        document.body.style.backgroundImage = `url('${image}')`;
+        localStorage.setItem('selectedTheme', image);
+    }
+
+    function uploadImage(event, slot) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                customImages[slot] = e.target.result;
+                localStorage.setItem('customImages', JSON.stringify(customImages));
+                setTheme(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme) {
+            document.body.style.backgroundImage = `url('${savedTheme}')`;
+        } else {
+            setTheme(customImages[0]);
+        }
+    }
+
+    function toggleThemeSelector() {
+        themeSelector.style.display = themeSelector.style.display === 'none' || themeSelector.style.display === '' ? 'block' : 'none';
+    }
+
+    function toggleCustomSlots() {
+        if (toggleBackgroundChangeCheckbox.checked) {
+            customSlots.classList.remove('hidden');
+        } else {
+            customSlots.classList.add('hidden');
+        }
+    }
+
+    loadTheme();
+    toggleCustomSlots();
+</script>
+</body>
+</html>
